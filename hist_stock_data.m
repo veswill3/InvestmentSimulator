@@ -112,9 +112,9 @@ for i = 1:length(tickers)
         [date, op, high, low, cl, volume, adj_close] = ...
             strread(temp(43:end),'%s%s%s%s%s%s%s','delimiter',',');
         
-        % VCW3 - flip data
+        % VCW3 - flip data and convert string dates to serial date numbers
         stocks(idx).Ticker = tickers{i};        % obtain ticker symbol
-        stocks(idx).Date = flipud(date);                % save date data
+        stocks(idx).Date = flipud(datenum(date, 'yyyy-mm-dd'));  % save date data
         stocks(idx).Open = flipud(str2double(op));      % save opening price data
         stocks(idx).High = flipud(str2double(high));    % save high price data
         stocks(idx).Low = flipud(str2double(low));      % save low price data

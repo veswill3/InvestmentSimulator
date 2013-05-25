@@ -21,10 +21,10 @@ stockData = struct([]);
         [time, price, quantity, ~, ~, ~, ~, ~] = ...
             strread(temp(56:end),'%s%s%s%s%s%s%s%s','delimiter',',');
 
-        stockData(1).Ticker = ticker;                   % obtain ticker symbol
-        stockData(1).Time = datenum(time, f) - .25;     % save date/time data
-        stockData(1).Price = str2double(price);         % save trade price data
-        stockData(1).Quantity = str2double(quantity);   % save trade quantity data
+        stockData(1).Ticker = ticker;
+        stockData(1).Time = datenum(time, f) - .25; % -.25 to adjust for timezone
+        stockData(1).Price = str2double(price);
+        stockData(1).Quantity = str2double(quantity);
     end
 end
 
