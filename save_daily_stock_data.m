@@ -1,12 +1,17 @@
-%Define ticker(s)
-ticker = 'GOOG'
+function save_daily_stock_data( ticker )
+%SAVE_DAILY_STOCK_DATA save daily stock data to file
+%   Saves daily stock data to file for later analysis. This will save to an
+%   Intraday_data folder in the current working directory. The filename
+%   will be date_ticker.mat where date is of the format yyyymmdd
 
-%Call stockData function
-stockData = daily_stock_data(ticker);
+    % get most recent stock data
+    stockData = daily_stock_data(ticker);
 
-%Save the structure
-x = getfield(stockData,'Time',{1,1});
-y = datestr(x)
-filename = strcat(y, ' ', ticker);
-save(fullfile('/home/alex/Projects/matlab/InvestmentSimulator/Intraday_data/', filename)...
-    , '-struct', 'stockData', 'Ticker', 'Time', 'Price', 'Quantity');
+    % generate filepath (date-ticker)
+    dataStr = datestr(stockData(1).Time(1), 'yyyymmdd');
+    filename = strcat(dataStr, '_', ticker);
+    path = fullfile(pwd, 'Intraday_data', filename);
+
+    % save to a .mat file
+    save(path, 'stockData');
+end
