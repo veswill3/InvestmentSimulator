@@ -1,7 +1,7 @@
-function save_daily_stock_data( ticker )
-%SAVE_DAILY_STOCK_DATA save daily stock data to file
-%   Saves daily stock data to file for later analysis. This will save to an
-%   Intraday_data folder in the current working directory. The filename
+function save_intraday_stock_data( ticker )
+%SAVE_INTRADAY_STOCK_DATA save intraday stock data to file
+%   Saves intraday stock data to file for later analysis. This will save to
+%   an Intraday_data folder in the current working directory. The filename
 %   will be date_ticker.mat where date is of the format yyyymmdd
 
     SAVE_FOLDER = 'Intraday_data';
@@ -11,7 +11,7 @@ function save_daily_stock_data( ticker )
     end
 
     % get most recent stock data
-    stockData = daily_stock_data(ticker);
+    stockData = intraday_stock_data(ticker);
 
     % generate filepath (date-ticker)
     dataStr = datestr(stockData(1).Time(1), 'yyyymmdd');

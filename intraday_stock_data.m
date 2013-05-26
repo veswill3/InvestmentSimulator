@@ -1,4 +1,4 @@
-function stockData = daily_stock_data( ticker )
+function stockData = intraday_stock_data( ticker )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
