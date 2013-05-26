@@ -1,6 +1,6 @@
 function [ time, price, quantity ] ...
-    = chunk_daily_data( TimeData, PriceData, QuantityData, secPerChunk )
-% CHUNK_DAILY_DATA peice out daily stock data for plotting and analysis
+    = chunk_intraday_data( TimeData, PriceData, QuantityData, secPerChunk )
+% CHUNK_INTRADAY_DATA peice out daily stock data for plotting and analysis
 % Created by Vesper
 %   Peice out daily stock data into usable chunks for plotting and analysis
 %   TimeData, PriceData, and QuantityData are vectors returned from
