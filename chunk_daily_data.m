@@ -6,16 +6,21 @@ function [ time, price, quantity ] ...
 %   TimeData, PriceData, and QuantityData are vectors returned from
 %   daily_stock_data.
 %   secPerChunk defines the number of seconds to use per chunk. The default
-%   will be the min possible chunk size (1 second?)
+%   will be the min possible chunk size (1 second?). This must divide
+%   evenly into the number of seconds availible for trading (9:30AM-4PM)
 %
 %   time is returned as the unique values from Time in the specified chunks
 %   price is returned as the average or mean of prices within each chunk
 %   quantity is returned as the sum of quantities within each chunk
 
     if nargin < 3
-        error('You must provide TimeData, PriceData, and QuantityData');
+        error('You must provide TimeData, PriceData, and QuantityData')
     end
     if exist('secPerChunk', 'var')
+        % 23400 is the # of seconds from 9:30AM - 4PM
+        if mod(23400, secPerChunk) ~= 0
+            error('secPerChunk must divide evenly into the trading day')
+        end
         oneSec = (1/86400);
         time = (min(TimeData):secPerChunk*oneSec:max(TimeData))';
     else
