@@ -7,12 +7,15 @@ secPerChunk = 60;
     stockData.Price, stockData.Quantity, secPerChunk);
 
 %% get min and max for X axes
-dateVec = datevec(time(1));
-date = dateVec(1:3);
-xMin = datenum([date, 9, 30, 0]);
-xMax = datenum([date, 16, 0, 0]);
+dateVecMin = datevec(min(time));
+dateVecMax = datevec(max(time));
+dateMin = dateVecMin(1:3);
+dateMax = dateVecMax(1:3);
+xMin = datenum([dateMin, 9, 30, 0]);
+xMax = datenum([dateMax, 16, 0, 0]);
 
-name = [stockData.Ticker,'-',datestr(dateVec, 'mm/dd/yyyy')];
+name = [stockData.Ticker,'[',datestr(dateVecMin, 'mm/dd/yyyy')...
+    ,'-',datestr(dateVecMax, 'mm/dd/yyyy')];
 figure1 = figure('Name', name);
 
 % Create axes
