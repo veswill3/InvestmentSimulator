@@ -29,6 +29,7 @@ end
 clear temp
 
 SAVE_FOLDER = 'Intraday_data';
+DATE_FORMAT = 'yyyymmdd';
 % make sure folder exists
 if exist(SAVE_FOLDER, 'file') ~= 7
     if ~silent
@@ -59,7 +60,7 @@ for i = 1:length(tickers)
         % get most recent stock data
         stockData = intraday_stock_data(tickers{i});
         % generate filepath (date-ticker)
-        dataStr = datestr(stockData(1).Time(1), 'yyyymmdd');
+        dataStr = datestr(stockData(1).Time(1), DATE_FORMAT);
         filename = strcat(dataStr, '_', tickers{i});
         path = fullfile(pwd, SAVE_FOLDER, filename);
         save(path, 'stockData'); % save to a .mat file
