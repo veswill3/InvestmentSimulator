@@ -41,7 +41,7 @@ for date = startDate:endDate
         partialData(1).Price = [partialData(1).Price; stockData.Price];
         partialData(1).Quantity = [partialData(1).Quantity; stockData.Quantity];
     catch
-        % just skip it
+        warning(['Unable to load data for ',filename])
     end
 end
 stockData = partialData;
