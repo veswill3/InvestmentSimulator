@@ -1,18 +1,18 @@
 function stockData = load_intraday_stock_data( ticker, startDate, endDate )
 %LOAD_INTRADAY_STOCK_DATA   Load intradat stock data from file
 %   Loads intraday stock data from file, provided a ticker, a start date,
-%   and an end date. This is to be used in conjuntion with the
-%   save_intraday_stock_data function as it assume the same data storage
-%   convention.
-
-startDate = datenum(startDate);
-endDate = datenum(endDate);
-if startDate >= endDate
-    error('startDate must be before endDate')
-end
+%   and an end date. Dates must be entered the the format yyyymmdd
+%   This is to be used in conjuntion with the save_intraday_stock_data
+%   function as it assume the same data storage convention.
 
 SAVE_FOLDER = 'Intraday_data';
 DATE_FORMAT = 'yyyymmdd';
+
+startDate = datenum(startDate, DATE_FORMAT);
+endDate = datenum(endDate, DATE_FORMAT);
+if startDate >= endDate
+    error('startDate must be before endDate')
+end
 
 % structure of stockData to return (as saved):
 %     stockData(1).Ticker
