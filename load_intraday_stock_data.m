@@ -10,8 +10,8 @@ DATE_FORMAT = 'yyyymmdd';
 
 startDate = datenum(startDate, DATE_FORMAT);
 endDate = datenum(endDate, DATE_FORMAT);
-if startDate >= endDate
-    error('startDate must be before endDate')
+if startDate > endDate
+    error('startDate cannot be after endDate')
 end
 
 % structure of stockData to return (as saved):
