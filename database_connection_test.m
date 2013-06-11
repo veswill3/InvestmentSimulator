@@ -12,6 +12,6 @@ password = '';
 driver = 'com.mysql.jdbc.Driver';
 dburl = ['jdbc:mysql://10.0.0.15:3306/' dbname];
 
-javaclasspath('/home/alex/Projects/DB/mysql-connector-java-5.1.25/mysql-connector-java-5.1.25-bin.jar');
+javaclasspath('lib/mysql-connector-java-5.1.25/mysql-connector-java-5.1.25-bin.jar');
 
 conn = database(dbname, username, password, driver, dburl);
