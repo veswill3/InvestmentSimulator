@@ -1,15 +1,20 @@
-% Gather stock data
-stock = hist_stock_data('01012013','06282013','RHT')
+function signal = WillPctR_signal(Date,Open,High,Low,Close,Volume,AdjClose)
 
-% Calculate Williams %R for 14 periods (days)
-wpctr = willpctr(stock.High,stock.Low,stock.Close,14)
+wpctr = willpctr(High,Low,Close,14);
 
-% Determine the signal, buy or sell, based on Williams %R
-wpctrSignal = ones(size(wpctr));
-wpctrSignal(wpctr>-20) = -1
+% Determine the signal:
+%   Only buy if the Williams %R is below -80. Only sell if the Willaims %R
+%   is above -20.
+signal = zeros(size(wpctr));
+signal(wpctr>-20) = -1;
+signal(wpctr<-80) = 1;
 
-% Plot the closing price of the stock
-subplot(2,1,1), plot(stock.Close)
-
-% Plot Williams %R
-subplot(2,1,2), plot(wpctr)
+%% plot for data validation
+figure
+h1 = subplot(4,1,[1;2]); stairs(Date,Close); ylabel('Close');
+h2 = subplot(4,1,3); stem(Date, Volume,'Marker','none'); ylabel('Volume');
+h3 = subplot(4,1,4); plotyy(Date, wpctr, Date, signal, 'plot', 'bar');
+%hold on; bar(Date, signal, 'r'); ylabel('WillPctR/Signal'); hold off;
+set([h1, h2, h3], 'XTick', []);
+linkaxes([h1, h2, h3], 'x');
+datetick(h3, 'keeplimits')

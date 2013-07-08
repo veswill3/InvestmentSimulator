@@ -16,6 +16,7 @@ for i=2:size(signal)
 end
 
 %% plot for data validation
+figure
 h1 = subplot(4,1,[1;2]); stairs(Date,Close); ylabel('Close');
 h2 = subplot(4,1,3); stem(Date, Volume,'Marker','none'); ylabel('Volume');
 h3 = subplot(4,1,4); bar(Date, diff);

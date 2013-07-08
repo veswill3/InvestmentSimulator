@@ -15,14 +15,16 @@ data = hist_stock_data(datestr(startDate, 'ddmmyyyy'), ...
 %     datestr(startDate, 'ddmmyyyy'), 'Nasdaq.txt');
 fprintf('Done (%s sec elapsed)\n', toc)
 
-%% generate signals (buy: 1, hold: 0, sell: -1
+%% generate signals (buy: 1, hold: 0, sell: -1)
 addpath('signal_generators/')
 fprintf('Generating signals...\n')
 for i = 1:length(data)
     stock = data(i);
     fprintf('%s', stock.Ticker)
-    signal = MACD_signal(stock.Date, stock.Open, stock.High, stock.Low, ...
+    signal_MACD = MACD_signal(stock.Date, stock.Open, stock.High, stock.Low, ...
         stock.Close, stock.Volume, stock.AdjClose);
+    signal_WillPctR = WillPctR_signal(stock.Date, stock.Open, stock.High, ...
+        stock.Low, stock.Close, stock.Volume, stock.AdjClose);
     fprintf(' [Press enter to continue]\n')
     pause
 end

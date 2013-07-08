@@ -12,7 +12,7 @@ function signal = ...
 %   Low - Low price for timeframe
 %   Close - Closing price for timeframe
 %   Volume - Sum of volume durring timeframe
-%   AdjClose - Adjustmed closing price for timeframe
+%   AdjClose - Adjusted closing price for timeframe
 
 %   Output:
 %   signal - an MxN matrix where M is the number of data points in the
