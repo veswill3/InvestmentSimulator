@@ -1,6 +1,6 @@
-function signal = MACD_signal(Date,Open,High,Low,Close,Volume,AdjClose)
+function signal = MACD_signal(StockData)
 
-[macdVec,macdSignal] = macd(Close);
+[macdVec,macdSignal] = macd(StockData.Close);
 
 % Determine the signal:
 %   Only buy if macdSignal crosses above macdVec. Only sell if macdSignal
@@ -16,6 +16,10 @@ for i=2:size(signal)
 end
 
 %% plot for data validation
+Close = StockData.Close;
+Volume = StockData.Volume;
+Date = StockData.Date;
+
 h1 = subplot(4,1,[1;2]); stairs(Date,Close); ylabel('Close');
 grid(h1, 'on');
 h2 = subplot(4,1,3); stem(Date, Volume,'Marker','none'); ylabel('Volume');

@@ -21,11 +21,9 @@ fprintf('Generating signals...\n')
 for i = 1:length(data)
     stock = data(i);
     fprintf('%s', stock.Ticker)
-    signal_MACD = MACD_signal(stock.Date, stock.Open, stock.High, stock.Low, ...
-        stock.Close, stock.Volume, stock.AdjClose);
+    signal_MACD = MACD_signal(stock);
     fprintf(' [Press enter to continue]\n'), pause
-    signal_WillPctR = WillPctR_signal(stock.Date, stock.Open, stock.High, ...
-        stock.Low, stock.Close, stock.Volume, stock.AdjClose);
+    signal_WillPctR = WillPctR_signal(stock);
     fprintf(' [Press enter to continue]\n'), pause
 end
 fprintf('Done generating signals\n')
