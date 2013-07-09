@@ -23,10 +23,10 @@ for i = 1:length(data)
     fprintf('%s', stock.Ticker)
     signal_MACD = MACD_signal(stock.Date, stock.Open, stock.High, stock.Low, ...
         stock.Close, stock.Volume, stock.AdjClose);
+    fprintf(' [Press enter to continue]\n'), pause
     signal_WillPctR = WillPctR_signal(stock.Date, stock.Open, stock.High, ...
         stock.Low, stock.Close, stock.Volume, stock.AdjClose);
-    fprintf(' [Press enter to continue]\n')
-    pause
+    fprintf(' [Press enter to continue]\n'), pause
 end
 fprintf('Done generating signals\n')
 %rmpath('signal_generators/')
