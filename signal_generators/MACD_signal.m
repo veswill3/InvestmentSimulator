@@ -21,6 +21,7 @@ Volume = StockData.Volume;
 Date = StockData.Date;
 
 h1 = subplot(4,1,[1;2]); stairs(Date,Close); ylabel('Close');
+title(h1, 'MACD signal generation');
 grid(h1, 'on');
 h2 = subplot(4,1,3); stem(Date, Volume,'Marker','none'); ylabel('Volume');
 h3 = subplot(4,1,4);
