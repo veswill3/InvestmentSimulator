@@ -25,6 +25,10 @@ for i = 1:length(data)
     fprintf(' [Press enter to continue]\n'), pause
     signal_WillPctR = WillPctR_signal(stock);
     fprintf(' [Press enter to continue]\n'), pause
+    signal_ADOSC = adosc_signal(stock);
+    fprintf(' [Press enter to continue]\n'), pause
+    signal_Stochosc = Stochosc_signal(stock);
+    fprintf(' [Press enter to continue]\n'), pause
 end
 fprintf('Done generating signals\n')
 %rmpath('signal_generators/')
