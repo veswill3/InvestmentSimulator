@@ -6,7 +6,7 @@ function signal = MACD_signal(StockData)
 %   Only buy if macdSignal crosses above macdVec. Only sell if macdSignal
 %   crosses below macdVec. Hold in all other situations
 signal = zeros(size(macdVec)); % Hold by default
-diff = macdSignal - macdVec;
+diff = macdVec - macdSignal;
 for i=2:size(signal)
     if diff(i) > 0 && diff(i-1) <= 0
         signal(i) = 1; % Buy
