@@ -1,15 +1,11 @@
 function signal = Stochosc_signal(StockData)
 
 %unpack data for use
-Open = StockData.Open;
 High = StockData.High;
 Low = StockData.Low;
 Close = StockData.Close;
-Volume = StockData.Volume;
-Date = StockData.Date;
 
- stosc = stochosc(High,Low,Close);
-
+stosc = stochosc(High,Low,Close);
 FpctK = stosc(:,1);
 FpctD = stosc(:,2);
 
@@ -19,15 +15,13 @@ FpctD = stosc(:,2);
 %   **Ideally we would also want to check for a resistance/support break**
 %   **This is the Fast Stochastic**
 
-signal = zeros(size(StockData.Close));
+signal = zeros(size(StockData.Close)); % default Hold
 
 for i = 1:size(FpctK)
     if FpctK(i) > FpctD(i) && FpctK(i) >= 50
         signal(i) = 1;  % Buy
     elseif FpctK(i) < FpctD(i) && FpctK(i) <= 50
         signal(i) = -1; % Sell
-    else
-        signal(i) = 0;  %Hold
     end
 end
 
@@ -41,8 +35,7 @@ grid(h1, 'on');
 h2 = subplot(4,1,3); stem(Date, Volume,'Marker','none'); ylabel('Volume');
 h3 = subplot(4,1,4);
 [AX, h4, h5] = plotyy(Date, signal, Date, FpctK, 'bar', 'line');
-hold on
-line(Date, FpctD, 'parent', AX(2));
+hold on; line(Date, FpctD, 'parent', AX(2), 'Color', 'Red');
 set(h4, 'FaceColor', [.8, .8, .8]); set(h5, 'Color', 'blue');
 set(get(AX(1),'Ylabel'),'String','Signal');
 set(get(AX(2),'Ylabel'),'String','Stochastic Oscillator');
